@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="title" content="LayoutIt! - Bootstrap可视化布局系统">
+<meta name="description" content="LayoutIt! 可拖放排序在线编辑的Bootstrap可视化布局系统">
+<meta name="keywords" content="">
+<title>Bootstrap可视化布局系统</title>
+
+<!-- Le styles -->
+<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="css/layoutit.css" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="shortcut icon" href="img/favicon.png">
+	
+	<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="js/jquery.htmlClean.js"></script>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="ckeditor/config.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+</head>
+
+<body style="min-height: 660px; cursor: auto;" class="edit">
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="brand" href="#"><img src="img/favicon.png"> 自动化布局<span class="label">BETA</span></a>
+      <div class="nav-collapse collapse">
+      	<ul class="nav" id="menu-layoutit">
+          <li class="divider-vertical"></li>
+          <li>
+            <div class="btn-group" data-toggle="buttons-radio">
+              <button type="button" id="edit" class="btn btn-primary active"><i class="icon-edit icon-white"></i>编辑</button>
+              <button type="button" class="btn btn-primary" id="devpreview"><i class="icon-eye-close icon-white"></i>布局编辑</button>
+              <button type="button" class="btn btn-primary" id="sourcepreview"><i class="icon-eye-open icon-white"></i>预览</button>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" data-target="#downloadModal" rel="/build/downloadModal" role="button" data-toggle="modal"><i class="icon-chevron-down icon-white"></i>下载</button>
+              <button class="btn btn-primary" href="/share/index" role="button" data-toggle="modal" data-target="#shareModal"><i class="icon-share icon-white"></i>保存</button>
+              <button class="btn btn-primary" href="#clear" id="clear"><i class="icon-trash icon-white"></i>清空</button>
+            </div>
+            <div class="btn-group">
+								<button class="btn btn-primary" href="#undo" id="undo" ><i class="icon-arrow-left icon-white"></i>撤销</button>
+								<button class="btn btn-primary" href="#redo" id="redo" ><i class="icon-arrow-right icon-white"></i>重做</button>
+			</div>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+               	  <li>
+               	  <a href="#">
+			        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=dodgepudding&repo=layoutit&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
+			      </a>
+			      </li>
+			      <li>
+			      <a href="#">
+			        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=dodgepudding&repo=layoutit&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
+			      </a>
+			      </li>
+          </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="">
+      <div class="sidebar-nav">
+        <ul class="nav nav-list accordion-group">
+          <li class="nav-header">
+            <div class="pull-right popover-info"><i class="icon-question-sign "></i>
+              <div class="popover fade right">
+                <div class="arrow"></div>
+                <h3 class="popover-title">功能</h3>
+                <div class="popover-content">需根据你的栅格配置设置, 默认为12, 即每行总栅格数不能超过12, 如果您需要了解更多信息，请访问<a target="_blank" href="http://twitter.github.io/bootstrap/scaffolding.html#gridSystem">Bootstrap栅格系统.</a></div>
+              </div>
+            </div>
+            <i class="icon-plus icon-white"></i> 布局设置 </li>
+          <li style="display: list-item;" class="rows" id="estRows">
+            <div class="lyrow ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="12" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span12 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="6 6" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span6 column"></div>
+                  <div class="span6 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="8 4" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span8 column"></div>
+                  <div class="span4 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="4 4 4" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span4 column"></div>
+                  <div class="span4 column"></div>
+                  <div class="span4 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="2 6 4" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span2 column"></div>
+                  <div class="span6 column"></div>
+                  <div class="span4 column"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-list accordion-group">
+          <li class="nav-header"><i class="icon-plus icon-white"></i> 基本CSS
+            <div class="pull-right popover-info"><i class="icon-question-sign "></i>
+              <div class="popover fade right">
+                <div class="arrow"></div>
+                <h3 class="popover-title">帮助</h3>
+                <div class="popover-content">拖放内的元素
+                  你要插入的列。从那里，你可以配置
+                  该元素的风格。如果您需要了解更多信息，请访问<a target="_blank" href="http://twitter.github.io/bootstrap/base-css.html">基本CSS.</a></div>
+              </div>
+            </div>
+          </li>
+          <li style="display: none;" class="boxes" id="elmBase">
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">对齐 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="text-left">靠左</a></li>
+                <li class=""><a href="#" rel="text-center">居中</a></li>
+                <li class=""><a href="#" rel="text-right">靠右</a></li>
+              </ul>
+              </span> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">标记 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="muted">禁用</a></li>
+                <li class=""><a href="#" rel="text-warning">警告</a></li>
+                <li class=""><a href="#" rel="text-error">错误</a></li>
+                <li class=""><a href="#" rel="text-info">提示</a></li>
+                <li class=""><a href="#" rel="text-success">成功</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">标题栏</div>
+              <div class="view layouteditor">
+                <h3>h3. 这是一套自动布局系统.</h3>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">对齐 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="text-left">靠左</a></li>
+                <li class=""><a href="#" rel="text-center">居中</a></li>
+                <li class=""><a href="#" rel="text-right">靠右</a></li>
+              </ul>
+              </span> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">标记 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="muted">禁用</a></li>
+                <li class=""><a href="#" rel="text-warning">警告</a></li>
+                <li class=""><a href="#" rel="text-error">错误</a></li>
+                <li class=""><a href="#" rel="text-info">提示</a></li>
+                <li class=""><a href="#" rel="text-success">成功</a></li>
+              </ul>
+              </span> <a class="btn btn-mini" href="#" rel="lead">Lead</a> </span>
+              <div class="preview">段落</div>
+              <div class="view layouteditor">
+                <p>一哥们坐公交，有一漂亮妹子总不停看他。哥们觉得妹子可能对自己有意思，不禁心里暗爽。妹子下车，哥们也跟着下车，妹子还不停回头看他。于是，哥们鼓起勇气跑过去，装作幽默地搭讪道：“<em>美女</em>，你干嘛一直看我啊？是不是我脸上有饭粒啊？”妹子瞪了一眼说：“<strong>你神经病呀</strong>，知道还不擦掉！！！” </p>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">地址</div>
+              <div class="view layouteditor">
+                <address>
+                <strong>Twitter, Inc.</strong><br>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+                </address>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="pull-right">右对齐</a> </span>
+              <div class="preview">引用块</div>
+              <div class="view layouteditor clearfix">
+                <blockquote>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  <small>Someone famous <cite title="Source Title">Source Title</cite></small> </blockquote>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="unstyled">无样式</a> <a class="btn btn-mini" href="#" rel="inline">嵌入</a> </span>
+              <div class="preview">无序列表</div>
+              <div class="view layouteditor">
+                <ul>
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                  <li>Facilisis in pretium nisl aliquet</li>
+                  <li>Nulla volutpat aliquam velit</li>
+                  <li>Faucibus porta lacus fringilla vel</li>
+                  <li>Aenean sit amet erat nunc</li>
+                  <li>Eget porttitor lorem</li>
+                </ul>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="unstyled">无样式</a> <a class="btn btn-mini" href="#" rel="inline">嵌入</a> </span>
+              <div class="preview">有序列表</div>
+              <div class="view layouteditor">
+                <ol>
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                  <li>Facilisis in pretium nisl aliquet</li>
+                  <li>Nulla volutpat aliquam velit</li>
+                  <li>Faucibus porta lacus fringilla vel</li>
+                  <li>Aenean sit amet erat nunc</li>
+                  <li>Eget porttitor lorem</li>
+                </ol>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="dl-horizontal">竖向对齐</a> </span>
+              <div class="preview">详细描述</div>
+              <div class="view layouteditor">
+                <dl>
+                  <dt>Description lists</dt>
+                  <dd>A description list is perfect for defining terms.</dd>
+                  <dt>Euismod</dt>
+                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dt>Malesuada porta</dt>
+                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                  <dt>Felis euismod semper eget lacinia</dt>
+                  <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+                </dl>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="table-striped">条纹</a></li>
+                <li class=""><a href="#" rel="table-bordered">边框</a></li>
+              </ul>
+              </span> <a class="btn btn-mini" href="#" rel="table-hover">鼠标指示</a> <a class="btn btn-mini" href="#" rel="table-condensed">紧凑</a> </span>
+              <div class="preview">表格</div>
+              <div class="view layouteditor">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Product</th>
+                      <th>Payment Taken</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>TB - Monthly</td>
+                      <td>01/04/2012</td>
+                      <td>Default</td>
+                    </tr>
+                    <tr class="success">
+                      <td>1</td>
+                      <td>TB - Monthly</td>
+                      <td>01/04/2012</td>
+                      <td>Approved</td>
+                    </tr>
+                    <tr class="error">
+                      <td>2</td>
+                      <td>TB - Monthly</td>
+                      <td>02/04/2012</td>
+                      <td>Declined</td>
+                    </tr>
+                    <tr class="warning">
+                      <td>3</td>
+                      <td>TB - Monthly</td>
+                      <td>03/04/2012</td>
+                      <td>Pending</td>
+                    </tr>
+                    <tr class="info">
+                      <td>4</td>
+                      <td>TB - Monthly</td>
+                      <td>04/04/2012</td>
+                      <td>Call in to confirm</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="form-inline">嵌入</a> </span>
+              <div class="preview">提交表单</div>
+              <div class="view layouteditor">
+                <form>
+                  <fieldset>
+                    <legend>Legend</legend>
+                    <label>Label name</label>
+                    <input placeholder="Type something…" type="text">
+                    <span class="help-block">Example block-level help text here.</span>
+                    <label class="checkbox">
+                      <input type="checkbox">
+                      Check me out </label>
+                    <button type="submit" class="btn">Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="form-inline">嵌入</a> </span>
+              <div class="preview">搜索框</div>
+              <div class="view layouteditor">
+                <form class="form-search">
+                  <input class="input-medium search-query" type="text">
+                  <button type="submit" class="btn">Search</button>
+                </form>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> </span>
+              <div class="preview">纵向表单</div>
+              <div class="view layouteditor">
+                <form class="form-horizontal">
+                  <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email</label>
+                    <div class="controls">
+                      <input id="inputEmail" placeholder="Email" type="text">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <div class="controls">
+                      <input id="inputPassword" placeholder="Password" type="password">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="controls">
+                      <label class="checkbox">
+                        <input type="checkbox">
+                        Remember me </label>
+                      <button type="submit" class="btn">Sign in</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="btn-primary">重点</a></li>
+                <li class=""><a href="#" rel="btn-info">信息</a></li>
+                <li class=""><a href="#" rel="btn-success">成功</a></li>
+                <li class=""><a href="#" rel="btn-warning">提醒</a></li>
+                <li class=""><a href="#" rel="btn-danger">危险</a></li>
+                <li class=""><a href="#" rel="btn-inverse">反转</a></li>
+                <li class=""><a href="#" rel="btn-link">链接</a></li>
+              </ul>
+              </span> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">尺寸 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="#" rel="btn-large">大</a></li>
+                <li class="active"><a href="#" rel="">中</a></li>
+                <li class=""><a href="#" rel="btn-small">小</a></li>
+                <li class=""><a href="#" rel="btn-mini">微型</a></li>
+              </ul>
+              </span> <a class="btn btn-mini" href="#" rel="btn-block">通栏</a> <a class="btn btn-mini" href="#" rel="disabled">禁用</a> </span>
+              <div class="preview">按钮</div>
+              <div class="view">
+                <button class="btn" type="button">按钮</button>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="img-rounded">圆角</a></li>
+                <li class=""><a href="#" rel="img-circle">圆圈</a></li>
+                <li class=""><a href="#" rel="img-polaroid">相框</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">图片</div>
+              <div class="view"> <img alt="140x140" src="img/a.jpg"> </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-list accordion-group">
+          <li class="nav-header"><i class="icon-plus icon-white"></i> 组件
+            <div class="pull-right popover-info"><i class="icon-question-sign "></i>
+              <div class="popover fade right">
+                <div class="arrow"></div>
+                <h3 class="popover-title">帮助</h3>
+                <div class="popover-content">拖放组件到布局框内. 拖入后你可以设置组件样式. 查看这里获取更多帮助 <a target="_blank" href="http://twitter.github.io/bootstrap/components.html">Components.</a></div>
+              </div>
+            </div>
+          </li>
+          <li style="display: none;" class="boxes" id="elmComponents">
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">方向<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">横向</a></li>
+                <li class=""><a href="#" rel="btn-group-vertical">竖向</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">按钮组</div>
+              <div class="view">
+                <div class="btn-group">
+                  <button class="btn" type="button"><i class="icon-align-left"></i></button>
+                  <button class="btn" type="button"><i class="icon-align-center"></i></button>
+                  <button class="btn" type="button"><i class="icon-align-right"></i></button>
+                  <button class="btn" type="button"><i class="icon-align-justify"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="dropup">上拉</a> </span>
+              <div class="preview">下拉菜单</div>
+              <div class="view">
+                <div class="btn-group">
+                  <button class="btn">Action</button>
+                  <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-submenu"> <a tabindex="-1" href="#">More options</a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="#" rel="nav-tabs">线框</a></li>
+                <li class=""><a href="#" rel="nav-pills">图钉</a></li>
+              </ul>
+              </span> <a class="btn btn-mini" href="#" rel="nav-stacked">切换格式</a> </span>
+              <div class="preview">导航</div>
+              <div class="view">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li class="disabled"><a href="#">Messages</a></li>
+                  <li class="dropdown pull-right"> <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
+              <div class="preview">导航列表</div>
+              <div class="view">
+                <ul class="nav nav-list">
+                  <li class="nav-header">List header</li>
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Library</a></li>
+                  <li><a href="#">Applications</a></li>
+                  <li class="nav-header">Another list header</li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Settings</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Help</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">面包导航</div>
+              <div class="view">
+                <ul class="breadcrumb">
+                  <li><a href="#">主页</a> <span class="divider">/</span></li>
+                  <li><a href="#">类目</a> <span class="divider">/</span></li>
+                  <li class="active">主题</li>
+                </ul>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">尺寸 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="#" rel="pagination-large">大</a></li>
+                <li class="active"><a href="#" rel="">中</a></li>
+                <li class=""><a href="#" rel="pagination-small">小</a></li>
+                <li class=""><a href="#" rel="pagination-mini">微型</a></li>
+              </ul>
+              </span> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">位置 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">靠左</a></li>
+                <li class=""><a href="#" rel="pagination-centered">居中</a></li>
+                <li class=""><a href="#" rel="pagination-right">靠右</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">翻页</div>
+              <div class="view">
+                <div class="pagination">
+                  <ul>
+                    <li><a href="#">上一页</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">下一页</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="badge-success">成功</a></li>
+                <li class=""><a href="#" rel="badge-warning">警告</a></li>
+                <li class=""><a href="#" rel="badge-important">重要</a></li>
+                <li class=""><a href="#" rel="badge-info">提示</a></li>
+                <li class=""><a href="#" rel="badge-inverse">倒数</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">文字标签</div>
+              <div class="view"> <span class="label">文字标签</span> </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="badge-success">成功</a></li>
+                <li class=""><a href="#" rel="badge-warning">警告</a></li>
+                <li class=""><a href="#" rel="badge-important">重要</a></li>
+                <li class=""><a href="#" rel="badge-info">提示</a></li>
+                <li class=""><a href="#" rel="badge-inverse">倒数</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">微标</div>
+              <div class="view"> <span class="badge">1</span> </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
+              <div class="preview">概述</div>
+              <div class="view layouteditor">
+                <div class="hero-unit">
+                  <h1>Hello, world!</h1>
+                  <p>This is a template for a simple marketing or informational 
+                    website. It includes a large callout called the hero unit and three 
+                    supporting pieces of content. Use it as a starting point to create 
+                    something more unique.</p>
+                  <p><a class="btn btn-primary btn-large" href="#">Learn more »</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">页标题</div>
+              <div class="view layouteditor">
+                <div class="page-header">
+                  <h1>Example page header <small>Subtext for header</small></h1>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">文本</div>
+              <div class="view layouteditor">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, 
+                  tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum 
+                  massa justo sit amet risus. Etiam porta sem malesuada magna mollis 
+                  euismod. Donec sed odio dui.</p>
+                <p><a class="btn" href="#">View details »</a></p>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">预览列表</div>
+              <div class="view">
+                <ul class="thumbnails">
+                  <li class="span4">
+                    <div class="thumbnail"> <img alt="300x200" src="img/people.jpg">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas
+                          eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id 
+                          dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a></p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="span4">
+                    <div class="thumbnail"> <img alt="300x200" src="img/city.jpg">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas
+                          eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id 
+                          dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a></p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="span4">
+                    <div class="thumbnail"> <img alt="300x200" src="img/sports.jpg">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas
+                          eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id 
+                          dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a></p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="progress-info">提示</a></li>
+                <li class=""><a href="#" rel="progress-success">成功</a></li>
+                <li class=""><a href="#" rel="progress-warning">警告</a></li>
+                <li class=""><a href="#" rel="progress-danger">危险</a></li>
+              </ul>
+              </span> <a class="btn btn-mini" href="#" rel="progress-striped">条纹</a> <a class="btn btn-mini" href="#" rel="active">动画</a> </span>
+              <div class="preview">进度条</div>
+              <div class="view">
+                <div class="progress">
+                  <div class="bar" style="width: 60%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
+              <div class="preview">嵌入媒体</div>
+              <div class="view">
+                <div class="media"> <a href="#" class="pull-left"> <img src="img/a_002.jpg" class="media-object"> </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">Nested media heading</h4>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus 
+                    scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in 
+                    vulputate at, tempus viverra turpis. </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-list accordion-group">
+          <li class="nav-header"><i class="icon-plus icon-white"></i> 交互组件 <span class="label label-important">NEW!</span>
+            <div class="pull-right popover-info"><i class="icon-question-sign "></i>
+              <div class="popover fade right">
+                <div class="arrow"></div>
+                <h3 class="popover-title">帮助</h3>
+                <div class="popover-content">拖放组件到布局容器. 拖入后, 你可以配置显示样式. 如果有任何疑问可访问 <a target="_blank" href="http://twitter.github.io/bootstrap/javascript.html">JavaScript.</a></div>
+              </div>
+            </div>
+          </li>
+          <li style="display: none;" class="boxes mute" id="elmJS">
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">遮罩窗体</div>
+              <div class="view"> 
+                <!-- Button to trigger modal --> 
+                <a id="myModalLink" href="#myModalContainer" role="button" class="btn" data-toggle="modal">触发遮罩窗体</a> 
+                
+                <!-- Modal -->
+                <div id="myModalContainer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">标题栏</h3>
+                  </div>
+                  <div class="modal-body">
+                    <p>显示信息</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="navbar-inverse">Inverse</a> 
+              <!--a class="btn btn-mini" href="#" rel="navbar-fixed-top">Navbar fixed top</a--> 
+              </span>
+              <div class="preview">导航栏</div>
+              <div class="view">
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="container-fluid"> <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a href="#" class="brand">网站名</a>
+                      <div class="nav-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav">
+                          <li class="active"><a href="#">主页</a></li>
+                          <li><a href="#">链接</a></li>
+                          <li><a href="#">链接</a></li>
+                          <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单 <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">下拉导航1</a></li>
+                              <li><a href="#">下拉导航2</a></li>
+                              <li><a href="#">其他</a></li>
+                              <li class="divider"></li>
+                              <li class="nav-header">标签</li>
+                              <li><a href="#">链接1</a></li>
+                              <li><a href="#">链接2</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="nav pull-right">
+                          <li><a href="#">右边链接</a></li>
+                          <li class="divider-vertical"></li>
+                          <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单 <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">下拉导航1</a></li>
+                              <li><a href="#">下拉导航2</a></li>
+                              <li><a href="#">其他</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">链接3</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- /.nav-collapse --> 
+                    </div>
+                  </div>
+                  <!-- /navbar-inner --> 
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">位置 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="tabs-below">底部</a></li>
+                <li class=""><a href="#" rel="tabs-left">靠左</a></li>
+                <li class=""><a href="#" rel="tabs-right">靠右</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">切换卡</div>
+              <div class="view">
+                <div class="tabbable" id="myTabs"> <!-- Only required for left/right tabs -->
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">第一部分</a></li>
+                    <li><a href="#tab2" data-toggle="tab">第二部分</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                      <p>第一部分内容.</p>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                      <p>第二部分内容.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#" rel="">默认</a></li>
+                <li class=""><a href="#" rel="alert-info">提示</a></li>
+                <li class=""><a href="#" rel="alert-error">错误</a></li>
+                <li class=""><a href="#" rel="alert-success">成功</a></li>
+              </ul>
+              </span> </span>
+              <div class="preview">提示框</div>
+              <div class="view">
+                <div class="alert">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <h4>提示!</h4>
+                  <strong>警告!</strong> 请注意你的人身安全. </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">手风琴切换</div>
+              <div class="view">
+                <div class="accordion" id="myAccordion">
+                  <div class="accordion-group">
+                    <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myAccordion" href="#collapseOne"> 选项卡 #1 </a> </div>
+                    <div id="collapseOne" class="accordion-body collapse in">
+                      <div class="accordion-inner"> 功能块... </div>
+                    </div>
+                  </div>
+                  <div class="accordion-group">
+                    <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myAccordion" href="#collapseTwo"> 选项卡 #2 </a> </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                      <div class="accordion-inner"> 功能块... </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">轮换图</div>
+              <div class="view">
+                <div class="carousel slide" id="myCarousel">
+                  <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+                    <li data-slide-to="1" data-target="#myCarousel" class=""></li>
+                    <li data-slide-to="2" data-target="#myCarousel" class=""></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="item active"> <img alt="" src="img/1.jpg">
+                      <div class="carousel-caption">
+                        <h4>First Thumbnail label</h4>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
+                          Donec id elit non mi porta gravida at eget metus. Nullam id dolor id 
+                          nibh ultricies vehicula ut id elit.</p>
+                      </div>
+                    </div>
+                    <div class="item"> <img alt="" src="img/2.jpg">
+                      <div class="carousel-caption">
+                        <h4>Second Thumbnail label</h4>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
+                          Donec id elit non mi porta gravida at eget metus. Nullam id dolor id 
+                          nibh ultricies vehicula ut id elit.</p>
+                      </div>
+                    </div>
+                    <div class="item"> <img alt="" src="img/3.jpg">
+                      <div class="carousel-caption">
+                        <h4>Third Thumbnail label</h4>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
+                          Donec id elit non mi porta gravida at eget metus. Nullam id dolor id 
+                          nibh ultricies vehicula ut id elit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a> <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a> </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-list accordion-group">
+          <li class="nav-header"><i class="icon-plus icon-white"></i> 应用扩展 </li>
+          <li style="display: none;" class="boxes mute" id="elmComm">
+            <div class="preview">建设中...</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/span-->
+    <div style="min-height: 590px;" class="demo ui-sortable"></div>
+    <!--/span-->
+    <div id="download-layout">
+      <div class="container-fluid"></div>
+    </div>
+  </div>
+  <!--/row--> 
+</div>
+<!--/.fluid-container--> 
+
+<script type="text/javascript">
+		function saveLayout(){
+			var data = $.data(document.body,'layout');
+			if (!data) {
+				data={};
+				data.count = 0;
+				data.list = [];
+			}
+			if (data.list.length>data.count) {
+				for (i=data.count;i<data.list.length;i++)
+					data.list[i]=null;
+			}
+			data.list[data.count] = $('.demo').html();
+			data.count++;
+			$.data(document.body,'layout',data);
+			//console.log(data);
+			/*$.ajax({  
+				type: "POST",  
+				url: "/build/saveLayout",  
+				data: { layout: $('.demo').html() },  
+				success: function(data) {
+					//updateButtonsVisibility();
+				}
+			});*/
+		}
+	
+		function downloadLayout(){
+			
+			$.ajax({  
+				type: "POST",  
+				url: "/build/downloadLayout",  
+				data: { layout: $('#download-layout').html() },  
+				success: function(data) { window.location.href = '/build/download'; }
+			});
+		}
+		
+		function downloadHtmlLayout(){
+			$.ajax({  
+				type: "POST",  
+				url: "/build/downloadLayout",  
+				data: { layout: $('#download-layout').html() },  
+				success: function(data) { window.location.href = '/build/downloadHtml'; }
+			});
+		}
+
+		function undoLayout() {
+			var data = $.data(document.body,'layout');
+			//console.log(data);
+			if (data) {
+				if (data.count<2) return false;
+				window.demoHtml = data.list[data.count-2];
+				data.count--;
+				$('.demo').html(window.demoHtml);
+				return true;
+			}
+			return false;
+			/*$.ajax({  
+				type: "POST",  
+				url: "/build/getPreviousLayout",  
+				data: { },  
+				success: function(data) {
+					undoOperation(data);
+				}
+			});*/
+		}
+
+		function redoLayout() {
+			var data = $.data(document.body,'layout');
+			if (data) {
+				if (data.list[data.count]) {
+					window.demoHtml = data.list[data.count];
+					data.count++;
+					$('.demo').html(window.demoHtml);
+					return true;
+				}
+			}
+			return false;
+			/*
+			$.ajax({  
+				type: "POST",  
+				url: "/build/getPreviousLayout",  
+				data: { },  
+				success: function(data) {
+					redoOperation(data);
+				}
+			});*/
+		}
+    </script>
+<div class="modal hide fade" role="dialog" id="downloadModal">
+  <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <h3>下载</h3>
+  </div>
+  <div class="modal-body">
+    <p>已在下面生成干净的HTML, 可以复制粘贴代码到你的项目.</p>
+    <div class="btn-group">
+      <button type="button" id="fluidPage" class="active btn btn-info"><i class="icon-fullscreen icon-white"></i> 自适应宽度</button>
+      <button type="button" class="btn btn-info" id="fixedPage"><i class="icon-screenshot icon-white"></i> 固定宽度</button>
+    </div>
+    <br>
+    <br>
+    <p>
+      <textarea></textarea>
+    </p>
+  </div>
+  <div class="modal-footer"> <a class="btn" data-dismiss="modal">关闭</a> </div>
+</div>
+<div class="modal hide fade" role="dialog" id="shareModal">
+  <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <h3>保存</h3>
+  </div>
+  <div class="modal-body">保存成功</div>
+  <div class="modal-footer"> <a class="btn" data-dismiss="modal">Close</a> </div>
+</div>
+</body>
+</html>
