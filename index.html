@@ -39,7 +39,7 @@
   <div class="navbar-inner">
     <div class="container-fluid">
       <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="brand" href="#"><img src="img/favicon.png"> 自动化布局<span class="label">BETA</span></a>
+      <a class="brand" href="#"><img src="img/favicon.png"> 可视化布局<span class="label">BETA</span></a>
       <div class="nav-collapse collapse">
       	<ul class="nav" id="menu-layoutit">
           <li class="divider-vertical"></li>
@@ -870,94 +870,6 @@
 </div>
 <!--/.fluid-container--> 
 
-<script type="text/javascript">
-		function saveLayout(){
-			var data = $.data(document.body,'layout');
-			if (!data) {
-				data={};
-				data.count = 0;
-				data.list = [];
-			}
-			if (data.list.length>data.count) {
-				for (i=data.count;i<data.list.length;i++)
-					data.list[i]=null;
-			}
-			data.list[data.count] = $('.demo').html();
-			data.count++;
-			$.data(document.body,'layout',data);
-			//console.log(data);
-			/*$.ajax({  
-				type: "POST",  
-				url: "/build/saveLayout",  
-				data: { layout: $('.demo').html() },  
-				success: function(data) {
-					//updateButtonsVisibility();
-				}
-			});*/
-		}
-	
-		function downloadLayout(){
-			
-			$.ajax({  
-				type: "POST",  
-				url: "/build/downloadLayout",  
-				data: { layout: $('#download-layout').html() },  
-				success: function(data) { window.location.href = '/build/download'; }
-			});
-		}
-		
-		function downloadHtmlLayout(){
-			$.ajax({  
-				type: "POST",  
-				url: "/build/downloadLayout",  
-				data: { layout: $('#download-layout').html() },  
-				success: function(data) { window.location.href = '/build/downloadHtml'; }
-			});
-		}
-
-		function undoLayout() {
-			var data = $.data(document.body,'layout');
-			//console.log(data);
-			if (data) {
-				if (data.count<2) return false;
-				window.demoHtml = data.list[data.count-2];
-				data.count--;
-				$('.demo').html(window.demoHtml);
-				return true;
-			}
-			return false;
-			/*$.ajax({  
-				type: "POST",  
-				url: "/build/getPreviousLayout",  
-				data: { },  
-				success: function(data) {
-					undoOperation(data);
-				}
-			});*/
-		}
-
-		function redoLayout() {
-			var data = $.data(document.body,'layout');
-			if (data) {
-				if (data.list[data.count]) {
-					window.demoHtml = data.list[data.count];
-					data.count++;
-					$('.demo').html(window.demoHtml);
-					return true;
-				}
-			}
-			return false;
-			/*
-			$.ajax({  
-				type: "POST",  
-				url: "/build/getPreviousLayout",  
-				data: { },  
-				success: function(data) {
-					redoOperation(data);
-				}
-			});*/
-		}
-    </script>
 <div class="modal hide fade" role="dialog" id="downloadModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <h3>下载</h3>

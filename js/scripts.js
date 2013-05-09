@@ -1,10 +1,119 @@
+function supportstorage() {
+	if (typeof window.localStorage=='object') 
+		return true;
+	else
+		return false;		
+}
+
 function handleSaveLayout() {
 	var e = $(".demo").html();
 	if (!stopsave && e != window.demoHtml) {
+		stopsave++;
+		window.demoHtml = e;
 		saveLayout();
-		window.demoHtml = e
+		stopsave--;
 	}
 }
+
+var layouthistory; 
+function saveLayout(){
+	var data = layouthistory;
+	if (!data) {
+		data={};
+		data.count = 0;
+		data.list = [];
+	}
+	if (data.list.length>data.count) {
+		for (i=data.count;i<data.list.length;i++)
+			data.list[i]=null;
+	}
+	data.list[data.count] = window.demoHtml;
+	data.count++;
+	if (supportstorage()) {
+		localStorage.setItem("layoutdata",JSON.stringify(data));
+	}
+	layouthistory = data;
+	console.log('save');
+	console.log(data);
+	/*$.ajax({  
+		type: "POST",  
+		url: "/build/saveLayout",  
+		data: { layout: $('.demo').html() },  
+		success: function(data) {
+			//updateButtonsVisibility();
+		}
+	});*/
+}
+
+function downloadLayout(){
+	
+	$.ajax({  
+		type: "POST",  
+		url: "/build/downloadLayout",  
+		data: { layout: $('#download-layout').html() },  
+		success: function(data) { window.location.href = '/build/download'; }
+	});
+}
+
+function downloadHtmlLayout(){
+	$.ajax({  
+		type: "POST",  
+		url: "/build/downloadLayout",  
+		data: { layout: $('#download-layout').html() },  
+		success: function(data) { window.location.href = '/build/downloadHtml'; }
+	});
+}
+
+function undoLayout() {
+	var data = layouthistory;
+	console.log('undo');
+	console.log(data);
+	if (data) {
+		if (data.count<2) return false;
+		window.demoHtml = data.list[data.count-2];
+		data.count--;
+		$('.demo').html(window.demoHtml);
+		if (supportstorage()) {
+			localStorage.setItem("layoutdata",JSON.stringify(data));
+		}
+		return true;
+	}
+	return false;
+	/*$.ajax({  
+		type: "POST",  
+		url: "/build/getPreviousLayout",  
+		data: { },  
+		success: function(data) {
+			undoOperation(data);
+		}
+	});*/
+}
+
+function redoLayout() {
+	var data = layouthistory;
+	if (data) {
+		if (data.list[data.count]) {
+			window.demoHtml = data.list[data.count];
+			data.count++;
+			$('.demo').html(window.demoHtml);
+			if (supportstorage()) {
+				localStorage.setItem("layoutdata",JSON.stringify(data));
+			}
+			return true;
+		}
+	}
+	return false;
+	/*
+	$.ajax({  
+		type: "POST",  
+		url: "/build/getPreviousLayout",  
+		data: { },  
+		success: function(data) {
+			redoOperation(data);
+		}
+	});*/
+}
+
 function handleJsIds() {
 	handleModalIds();
 	handleAccordionIds();
@@ -115,7 +224,10 @@ function removeElm() {
 	})
 }
 function clearDemo() {
-	$(".demo").empty()
+	$(".demo").empty();
+	layouthistory = null;
+	if (supportstorage())
+		localStorage.removeItem("layoutdata");
 }
 function removeMenuClasses() {
 	$("#menu-layoutit li button").removeClass("active")
@@ -190,75 +302,45 @@ var currentDocument = null;
 var timerSave = 500;
 var layouteditor;
 var stopsave = 0;
+var startdrag = 0;
 var demoHtml = $(".demo").html();
 $(window).resize(function() {
 	$("body").css("min-height", $(window).height() - 90);
 	$(".demo").css("min-height", $(window).height() - 160)
 });
 
-function initContainer(){
+function restoreData(){
+	if (supportstorage()) {
+		layouthistory = JSON.parse(localStorage.getItem("layoutdata"));
+		if (!layouthistory) return false;
+		window.demoHtml = layouthistory.list[layouthistory.count-1];
+		if (window.demoHtml) $(".demo").html(window.demoHtml);
+	}
+}
 
+function initContainer(){
 	$(".demo, .demo .column").sortable({
 		connectWith: ".column",
 		opacity: .35,
 		handle: ".drag",
 		start: function(e,t) {
-			stopsave++;
+			if (!startdrag) stopsave++;
+			startdrag = 1;
 			destroyLayoutEditor();
 		},
 		stop: function(e,t) {
-			stopsave--;
-		}
-	});
-	$(".sidebar-nav .lyrow").draggable({
-		connectToSortable: ".demo",
-		helper: "clone",
-		handle: ".drag",
-		start: function(e,t) {
-			stopsave++;
-			destroyLayoutEditor();
-		},
-		drag: function(e, t) {
-			t.helper.width(400)
-		},
-		stop: function(e, t) {
-			stopsave--;
-			handleSaveLayout();
-			$(".demo .column").sortable({
-				opacity: .35,
-				connectWith: ".column",
-				start: function(e,t) {
-					stopsave++;
-					destroyLayoutEditor();
-				},
-				stop: function(e,t) {
-					stopsave--;
-				}
-			})
-		}
-	});
-	$(".sidebar-nav .box").draggable({
-		connectToSortable: ".column",
-		helper: "clone",
-		handle: ".drag",
-		start: function(e,t) {
-			stopsave++;
-			destroyLayoutEditor();
-		},
-		drag: function(e, t) {
-			t.helper.width(400)
-		},
-		stop: function() {
-			stopsave--;
-			handleJsIds();
+			if(stopsave>0) stopsave--;
+			startdrag = 0;
 		}
 	});
 	configurationElm();
 }
 $(document).ready(function() {
 	CKEDITOR.disableAutoInline = true;
+	restoreData();
 	$('body.edit .demo').on('click','.layouteditor',function(){
 		destroyLayoutEditor();
+		console.log(stopsave);
 		stopsave++;
 		layouteditor = CKEDITOR.replace( this,{
 			language: 'zh-cn',
@@ -268,6 +350,54 @@ $(document).ready(function() {
 	});
 	$("body").css("min-height", $(window).height() - 90);
 	$(".demo").css("min-height", $(window).height() - 160);
+	$(".sidebar-nav .lyrow").draggable({
+		connectToSortable: ".demo",
+		helper: "clone",
+		handle: ".drag",
+		start: function(e,t) {
+			if (!startdrag) stopsave++;
+			startdrag = 1;
+			destroyLayoutEditor();
+		},
+		drag: function(e, t) {
+			t.helper.width(400)
+		},
+		stop: function(e, t) {
+			$(".demo .column").sortable({
+				opacity: .35,
+				connectWith: ".column",
+				start: function(e,t) {
+					if (!startdrag) stopsave++;
+					startdrag = 1;
+					destroyLayoutEditor();
+				},
+				stop: function(e,t) {
+					if(stopsave>0) stopsave--;
+					startdrag = 0;
+				}
+			});
+			if(stopsave>0) stopsave--;
+			startdrag = 0;
+		}
+	});
+	$(".sidebar-nav .box").draggable({
+		connectToSortable: ".column",
+		helper: "clone",
+		handle: ".drag",
+		start: function(e,t) {
+			if (!startdrag) stopsave++;
+			startdrag = 1;
+			destroyLayoutEditor();
+		},
+		drag: function(e, t) {
+			t.helper.width(400)
+		},
+		stop: function() {
+			handleJsIds();
+			if(stopsave>0) stopsave--;
+			startdrag = 0;
+		}
+	});
 	initContainer();
 	$("[data-target=#downloadModal]").click(function(e) {
 		e.preventDefault();
@@ -329,10 +459,14 @@ $(document).ready(function() {
 		$(this).next().slideDown()
 	});
 	$('#undo').click(function(){
+		stopsave++;
 		if (undoLayout()) initContainer();
+		stopsave--;
 	});
 	$('#redo').click(function(){
+		stopsave++;
 		if (redoLayout()) initContainer();
+		stopsave--;
 	});
 	removeElm();
 	gridSystemGenerator();
