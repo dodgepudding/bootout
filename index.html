@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="title" content="LayoutIt! - Bootstrap可视化布局系统">
 <meta name="description" content="LayoutIt! 可拖放排序在线编辑的Bootstrap可视化布局系统">
-<meta name="keywords" content="">
+<meta name="keywords" content="可视化,布局,系统">
 <title>Bootstrap可视化布局系统</title>
 
 <!-- Le styles -->
@@ -163,7 +163,8 @@
             </div>
           </li>
           <li style="display: none;" class="boxes" id="elmBase">
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">对齐 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> 
+            	 <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">对齐 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="#" rel="">默认</a></li>
                 <li class=""><a href="#" rel="text-left">靠左</a></li>
@@ -181,11 +182,11 @@
               </ul>
               </span> </span>
               <div class="preview">标题栏</div>
-              <div class="view layouteditor">
-                <h3>h3. 这是一套自动布局系统.</h3>
+              <div class="view">
+                <h3 contenteditable="true">h3. 这是一套自动布局系统.</h3>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">对齐 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">对齐 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="#" rel="">默认</a></li>
                 <li class=""><a href="#" rel="text-left">靠左</a></li>
@@ -203,14 +204,15 @@
               </ul>
               </span> <a class="btn btn-mini" href="#" rel="lead">Lead</a> </span>
               <div class="preview">段落</div>
-              <div class="view layouteditor">
+              <div class="view" contenteditable="true">
                 <p>一哥们坐公交，有一漂亮妹子总不停看他。哥们觉得妹子可能对自己有意思，不禁心里暗爽。妹子下车，哥们也跟着下车，妹子还不停回头看他。于是，哥们鼓起勇气跑过去，装作幽默地搭讪道：“<em>美女</em>，你干嘛一直看我啊？是不是我脸上有饭粒啊？”妹子瞪了一眼说：“<strong>你神经病呀</strong>，知道还不擦掉！！！” </p>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">地址</div>
-              <div class="view layouteditor">
-                <address>
+              <div class="view">
+                <address contenteditable="true">
                 <strong>Twitter, Inc.</strong><br>
                 795 Folsom Ave, Suite 600<br>
                 San Francisco, CA 94107<br>
@@ -220,16 +222,16 @@
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="pull-right">右对齐</a> </span>
               <div class="preview">引用块</div>
-              <div class="view layouteditor clearfix">
-                <blockquote>
+              <div class="view clearfix">
+                <blockquote contenteditable="true">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                   <small>Someone famous <cite title="Source Title">Source Title</cite></small> </blockquote>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="unstyled">无样式</a> <a class="btn btn-mini" href="#" rel="inline">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="unstyled">无样式</a> <a class="btn btn-mini" href="#" rel="inline">嵌入</a> </span>
               <div class="preview">无序列表</div>
-              <div class="view layouteditor">
-                <ul>
+              <div class="view">
+                <ul contenteditable="true">
                   <li>Lorem ipsum dolor sit amet</li>
                   <li>Consectetur adipiscing elit</li>
                   <li>Integer molestie lorem at massa</li>
@@ -241,10 +243,10 @@
                 </ul>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="unstyled">无样式</a> <a class="btn btn-mini" href="#" rel="inline">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="unstyled">无样式</a> <a class="btn btn-mini" href="#" rel="inline">嵌入</a> </span>
               <div class="preview">有序列表</div>
-              <div class="view layouteditor">
-                <ol>
+              <div class="view">
+                <ol contenteditable="true">
                   <li>Lorem ipsum dolor sit amet</li>
                   <li>Consectetur adipiscing elit</li>
                   <li>Integer molestie lorem at massa</li>
@@ -256,10 +258,10 @@
                 </ol>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="dl-horizontal">竖向对齐</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="dl-horizontal">竖向对齐</a> </span>
               <div class="preview">详细描述</div>
-              <div class="view layouteditor">
-                <dl>
+              <div class="view">
+                <dl contenteditable="true">
                   <dt>Description lists</dt>
                   <dd>A description list is perfect for defining terms.</dd>
                   <dt>Euismod</dt>
@@ -272,7 +274,7 @@
                 </dl>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="#" rel="">默认</a></li>
                 <li class=""><a href="#" rel="table-striped">条纹</a></li>
@@ -280,8 +282,8 @@
               </ul>
               </span> <a class="btn btn-mini" href="#" rel="table-hover">鼠标指示</a> <a class="btn btn-mini" href="#" rel="table-condensed">紧凑</a> </span>
               <div class="preview">表格</div>
-              <div class="view layouteditor">
-                <table class="table">
+              <div class="view">
+                <table class="table" contenteditable="true">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -325,54 +327,55 @@
                 </table>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="form-inline">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="form-inline">嵌入</a> </span>
               <div class="preview">提交表单</div>
-              <div class="view layouteditor">
-                <form>
-                  <fieldset>
-                    <legend>Legend</legend>
-                    <label>Label name</label>
-                    <input placeholder="Type something…" type="text">
-                    <span class="help-block">Example block-level help text here.</span>
-                    <label class="checkbox">
-                      <input type="checkbox">
-                      Check me out </label>
-                    <button type="submit" class="btn">Submit</button>
-                  </fieldset>
-                </form>
+              <div class="view">
+				<form>
+					<fieldset>
+					<legend contenteditable="true">Legend</legend>
+					<label contenteditable="true">Label name</label>
+					<input type="text" placeholder="Type something…">
+					<span class="help-block" contenteditable="true">Example block-level help text here.</span>
+					<label class="checkbox">
+					<input type="checkbox" contenteditable="true"> Check me out
+					</label>
+					<button type="submit" class="btn" contenteditable="true">Submit</button>
+					</fieldset>
+				</form>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="form-inline">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="form-inline">嵌入</a> </span>
               <div class="preview">搜索框</div>
-              <div class="view layouteditor">
+              <div class="view">
                 <form class="form-search">
                   <input class="input-medium search-query" type="text">
-                  <button type="submit" class="btn">Search</button>
+                  <button type="submit" class="btn" contenteditable="true">Search</button>
                 </form>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> </span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">纵向表单</div>
-              <div class="view layouteditor">
+              <div class="view">
                 <form class="form-horizontal">
                   <div class="control-group">
-                    <label class="control-label" for="inputEmail">Email</label>
+                    <label class="control-label" for="inputEmail" contenteditable="true">Email</label>
                     <div class="controls">
                       <input id="inputEmail" placeholder="Email" type="text">
                     </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label" for="inputPassword">Password</label>
+                    <label class="control-label" for="inputPassword" contenteditable="true">Password</label>
                     <div class="controls">
                       <input id="inputPassword" placeholder="Password" type="password">
                     </div>
                   </div>
                   <div class="control-group">
                     <div class="controls">
-                      <label class="checkbox">
+                      <label class="checkbox" contenteditable="true">
                         <input type="checkbox">
                         Remember me </label>
-                      <button type="submit" class="btn">Sign in</button>
+                      <button type="submit" class="btn" contenteditable="true">Sign in</button>
                     </div>
                   </div>
                 </form>
@@ -399,7 +402,7 @@
               </span> <a class="btn btn-mini" href="#" rel="btn-block">通栏</a> <a class="btn btn-mini" href="#" rel="disabled">禁用</a> </span>
               <div class="preview">按钮</div>
               <div class="view">
-                <button class="btn" type="button">按钮</button>
+                <button class="btn" type="button" contenteditable="true">按钮</button>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
@@ -442,13 +445,13 @@
                 </div>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="dropup">上拉</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="dropup">上拉</a> </span>
               <div class="preview">下拉菜单</div>
               <div class="view">
                 <div class="btn-group">
-                  <button class="btn">Action</button>
+                  <button class="btn" contenteditable="true">Action</button>
                   <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu" contenteditable="true">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
@@ -464,7 +467,7 @@
                 </div>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class=""><a href="#" rel="nav-tabs">线框</a></li>
                 <li class=""><a href="#" rel="nav-pills">图钉</a></li>
@@ -472,7 +475,7 @@
               </span> <a class="btn btn-mini" href="#" rel="nav-stacked">切换格式</a> </span>
               <div class="preview">导航</div>
               <div class="view">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" contenteditable="true">
                   <li class="active"><a href="#">Home</a></li>
                   <li><a href="#">Profile</a></li>
                   <li class="disabled"><a href="#">Messages</a></li>
@@ -488,10 +491,10 @@
                 </ul>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
               <div class="preview">导航列表</div>
               <div class="view">
-                <ul class="nav nav-list">
+                <ul class="nav nav-list" contenteditable="true">
                   <li class="nav-header">List header</li>
                   <li class="active"><a href="#">Home</a></li>
                   <li><a href="#">Library</a></li>
@@ -505,16 +508,17 @@
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">面包导航</div>
               <div class="view">
-                <ul class="breadcrumb">
+                <ul class="breadcrumb" contenteditable="true">
                   <li><a href="#">主页</a> <span class="divider">/</span></li>
                   <li><a href="#">类目</a> <span class="divider">/</span></li>
                   <li class="active">主题</li>
                 </ul>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">尺寸 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">尺寸 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class=""><a href="#" rel="pagination-large">大</a></li>
                 <li class="active"><a href="#" rel="">中</a></li>
@@ -531,7 +535,7 @@
               <div class="preview">翻页</div>
               <div class="view">
                 <div class="pagination">
-                  <ul>
+                  <ul contenteditable="true">
                     <li><a href="#">上一页</a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -543,7 +547,7 @@
                 </div>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="#" rel="">默认</a></li>
                 <li class=""><a href="#" rel="badge-success">成功</a></li>
@@ -554,9 +558,9 @@
               </ul>
               </span> </span>
               <div class="preview">文字标签</div>
-              <div class="view"> <span class="label">文字标签</span> </div>
+              <div class="view"> <span class="label" contenteditable="true">文字标签</span> </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">样式 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="#" rel="">默认</a></li>
                 <li class=""><a href="#" rel="badge-success">成功</a></li>
@@ -567,12 +571,12 @@
               </ul>
               </span> </span>
               <div class="preview">微标</div>
-              <div class="view"> <span class="badge">1</span> </div>
+              <div class="view"> <span class="badge" contenteditable="true">1</span> </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
               <div class="preview">概述</div>
-              <div class="view layouteditor">
-                <div class="hero-unit">
+              <div class="view">
+                <div class="hero-unit" contenteditable="true">
                   <h1>Hello, world!</h1>
                   <p>This is a template for a simple marketing or informational 
                     website. It includes a large callout called the hero unit and three 
@@ -583,31 +587,34 @@
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">页标题</div>
-              <div class="view layouteditor">
-                <div class="page-header">
+              <div class="view">
+                <div class="page-header" contenteditable="true">
                   <h1>Example page header <small>Subtext for header</small></h1>
                 </div>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">文本</div>
-              <div class="view layouteditor">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, 
+              <div class="view">
+                <h2 contenteditable="true">Heading</h2>
+                <p contenteditable="true">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, 
                   tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum 
                   massa justo sit amet risus. Etiam porta sem malesuada magna mollis 
                   euismod. Donec sed odio dui.</p>
-                <p><a class="btn" href="#">View details »</a></p>
+                <p><a class="btn" href="#" contenteditable="true">View details »</a></p>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">预览列表</div>
               <div class="view">
                 <ul class="thumbnails">
                   <li class="span4">
                     <div class="thumbnail"> <img alt="300x200" src="img/people.jpg">
-                      <div class="caption">
+                      <div class="caption" contenteditable="true">
                         <h3>Thumbnail label</h3>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas
                           eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id 
@@ -618,7 +625,7 @@
                   </li>
                   <li class="span4">
                     <div class="thumbnail"> <img alt="300x200" src="img/city.jpg">
-                      <div class="caption">
+                      <div class="caption" contenteditable="true">
                         <h3>Thumbnail label</h3>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas
                           eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id 
@@ -629,7 +636,7 @@
                   </li>
                   <li class="span4">
                     <div class="thumbnail"> <img alt="300x200" src="img/sports.jpg">
-                      <div class="caption">
+                      <div class="caption" contenteditable="true">
                         <h3>Thumbnail label</h3>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas
                           eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id 
@@ -657,11 +664,11 @@
                 </div>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="well">嵌入</a> </span>
               <div class="preview">嵌入媒体</div>
               <div class="view">
                 <div class="media"> <a href="#" class="pull-left"> <img src="img/a_002.jpg" class="media-object"> </a>
-                  <div class="media-body">
+                  <div class="media-body" contenteditable="true">
                     <h4 class="media-heading">Nested media heading</h4>
                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus 
                     scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in 
@@ -704,16 +711,16 @@
                 </div>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <a class="btn btn-mini" href="#" rel="navbar-inverse">Inverse</a> 
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <a class="btn btn-mini" href="#" rel="navbar-inverse">Inverse</a> 
               <!--a class="btn btn-mini" href="#" rel="navbar-fixed-top">Navbar fixed top</a--> 
               </span>
               <div class="preview">导航栏</div>
               <div class="view">
                 <div class="navbar">
                   <div class="navbar-inner">
-                    <div class="container-fluid"> <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a href="#" class="brand">网站名</a>
+                    <div class="container-fluid"> <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a href="#" class="brand" contenteditable="true">网站名</a>
                       <div class="nav-collapse collapse navbar-responsive-collapse">
-                        <ul class="nav">
+                        <ul class="nav" contenteditable="true">
                           <li class="active"><a href="#">主页</a></li>
                           <li><a href="#">链接</a></li>
                           <li><a href="#">链接</a></li>
@@ -729,7 +736,7 @@
                             </ul>
                           </li>
                         </ul>
-                        <ul class="nav pull-right">
+                        <ul class="nav pull-right" contenteditable="true">
                           <li><a href="#">右边链接</a></li>
                           <li class="divider-vertical"></li>
                           <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单 <b class="caret"></b></a>
@@ -750,7 +757,7 @@
                 </div>
               </div>
             </div>
-            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">位置 <span class="caret"></span></a>
+            <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span> <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button> <span class="btn-group"> <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">位置 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="active"><a href="#" rel="">默认</a></li>
                 <li class=""><a href="#" rel="tabs-below">底部</a></li>
@@ -762,14 +769,14 @@
               <div class="view">
                 <div class="tabbable" id="myTabs"> <!-- Only required for left/right tabs -->
                   <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab1" data-toggle="tab">第一部分</a></li>
-                    <li><a href="#tab2" data-toggle="tab">第二部分</a></li>
+                    <li class="active"><a href="#tab1" data-toggle="tab" contenteditable="true">第一部分</a></li>
+                    <li><a href="#tab2" data-toggle="tab" contenteditable="true">第二部分</a></li>
                   </ul>
                   <div class="tab-content">
-                    <div class="tab-pane active" id="tab1">
+                    <div class="tab-pane active" id="tab1" contenteditable="true">
                       <p>第一部分内容.</p>
                     </div>
-                    <div class="tab-pane" id="tab2">
+                    <div class="tab-pane" id="tab2" contenteditable="true">
                       <p>第二部分内容.</p>
                     </div>
                   </div>
@@ -786,32 +793,34 @@
               </span> </span>
               <div class="preview">提示框</div>
               <div class="view">
-                <div class="alert">
+                <div class="alert" contenteditable="true">
                   <button type="button" class="close" data-dismiss="alert">×</button>
                   <h4>提示!</h4>
                   <strong>警告!</strong> 请注意你的人身安全. </div>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">手风琴切换</div>
               <div class="view">
                 <div class="accordion" id="myAccordion">
                   <div class="accordion-group">
-                    <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myAccordion" href="#collapseOne"> 选项卡 #1 </a> </div>
+                    <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myAccordion" href="#collapseOne" contenteditable="true"> 选项卡 #1 </a> </div>
                     <div id="collapseOne" class="accordion-body collapse in">
-                      <div class="accordion-inner"> 功能块... </div>
+                      <div class="accordion-inner" contenteditable="true"> 功能块... </div>
                     </div>
                   </div>
                   <div class="accordion-group">
-                    <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myAccordion" href="#collapseTwo"> 选项卡 #2 </a> </div>
+                    <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myAccordion" href="#collapseTwo" contenteditable="true"> 选项卡 #2 </a> </div>
                     <div id="collapseTwo" class="accordion-body collapse">
-                      <div class="accordion-inner"> 功能块... </div>
+                      <div class="accordion-inner" contenteditable="true"> 功能块... </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="box box-element ui-draggable"> <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <span class="configuration"><button type="button" class="btn btn-mini" data-target="#editorModal" role="button" data-toggle="modal">编辑</button></span>
               <div class="preview">轮换图</div>
               <div class="view">
                 <div class="carousel slide" id="myCarousel">
@@ -822,7 +831,7 @@
                   </ol>
                   <div class="carousel-inner">
                     <div class="item active"> <img alt="" src="img/1.jpg">
-                      <div class="carousel-caption">
+                      <div class="carousel-caption" contenteditable="true">
                         <h4>First Thumbnail label</h4>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
                           Donec id elit non mi porta gravida at eget metus. Nullam id dolor id 
@@ -830,7 +839,7 @@
                       </div>
                     </div>
                     <div class="item"> <img alt="" src="img/2.jpg">
-                      <div class="carousel-caption">
+                      <div class="carousel-caption" contenteditable="true">
                         <h4>Second Thumbnail label</h4>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
                           Donec id elit non mi porta gravida at eget metus. Nullam id dolor id 
@@ -838,7 +847,7 @@
                       </div>
                     </div>
                     <div class="item"> <img alt="" src="img/3.jpg">
-                      <div class="carousel-caption">
+                      <div class="carousel-caption" contenteditable="true">
                         <h4>Third Thumbnail label</h4>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
                           Donec id elit non mi porta gravida at eget metus. Nullam id dolor id 
@@ -869,7 +878,17 @@
   <!--/row--> 
 </div>
 <!--/.fluid-container--> 
-
+<div class="modal hide fade" role="dialog" id="editorModal">
+  <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <h3>编辑</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <textarea id="contenteditor"></textarea>
+    </p>
+  </div>
+  <div class="modal-footer"> <a id="savecontent" class="btn btn-primary" data-dismiss="modal">保存</a> <a class="btn" data-dismiss="modal">关闭</a> </div>
+</div>
 <div class="modal hide fade" role="dialog" id="downloadModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <h3>下载</h3>

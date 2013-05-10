@@ -194,8 +194,7 @@ body.devpreview { margin-left:0px;}
 .devpreview .demo .box, .devpreview .demo .row-fluid { padding-top:0; background:none; }
 .devpreview .demo .column { padding-top:19px; padding-bottom:19px; }
 #download-layout { display: none }
-#feedbackModal textarea,
+#editorModal textarea,
 #downloadModal textarea { width:100%;height:280px;resize: none;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box; }
-#feedbackModal input { width:515px; }
-#feedbackModal input.modal-error-field, #feedbackModal textarea.modal-error-field { border: 1px solid red; }
+#editorModal {width:640px;}
 a.language-selected { font-style: italic; font-weight: bold; }

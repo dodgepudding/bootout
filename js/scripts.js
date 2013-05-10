@@ -33,8 +33,7 @@ function saveLayout(){
 		localStorage.setItem("layoutdata",JSON.stringify(data));
 	}
 	layouthistory = data;
-	console.log('save');
-	console.log(data);
+	//console.log(data);
 	/*$.ajax({  
 		type: "POST",  
 		url: "/build/saveLayout",  
@@ -66,8 +65,7 @@ function downloadHtmlLayout(){
 
 function undoLayout() {
 	var data = layouthistory;
-	console.log('undo');
-	console.log(data);
+	//console.log(data);
 	if (data) {
 		if (data.count<2) return false;
 		window.demoHtml = data.list[data.count-2];
@@ -290,20 +288,12 @@ function downloadLayoutSrc() {
 	$("#downloadModal textarea").val(formatSrc)
 }
 
-function destroyLayoutEditor(){
-	if ( layouteditor ){
-		layouteditor.destroy();
-		layouteditor = null;
-		stopsave--;
-	}
-}
-
 var currentDocument = null;
 var timerSave = 500;
-var layouteditor;
 var stopsave = 0;
 var startdrag = 0;
 var demoHtml = $(".demo").html();
+var currenteditor = null;
 $(window).resize(function() {
 	$("body").css("min-height", $(window).height() - 90);
 	$(".demo").css("min-height", $(window).height() - 160)
@@ -326,7 +316,6 @@ function initContainer(){
 		start: function(e,t) {
 			if (!startdrag) stopsave++;
 			startdrag = 1;
-			destroyLayoutEditor();
 		},
 		stop: function(e,t) {
 			if(stopsave>0) stopsave--;
@@ -338,15 +327,10 @@ function initContainer(){
 $(document).ready(function() {
 	CKEDITOR.disableAutoInline = true;
 	restoreData();
-	$('body.edit .demo').on('click','.layouteditor',function(){
-		destroyLayoutEditor();
-		console.log(stopsave);
-		stopsave++;
-		layouteditor = CKEDITOR.replace( this,{
-			language: 'zh-cn',
-			contentsCss: ['LayoutIt/bootstrap-combined.min.css'],
-			allowedContent: true
-		});
+	var contenthandle = CKEDITOR.replace( 'contenteditor' ,{
+		language: 'zh-cn',
+		contentsCss: ['css/bootstrap-combined.min.css'],
+		allowedContent: true
 	});
 	$("body").css("min-height", $(window).height() - 90);
 	$(".demo").css("min-height", $(window).height() - 160);
@@ -357,7 +341,6 @@ $(document).ready(function() {
 		start: function(e,t) {
 			if (!startdrag) stopsave++;
 			startdrag = 1;
-			destroyLayoutEditor();
 		},
 		drag: function(e, t) {
 			t.helper.width(400)
@@ -369,7 +352,6 @@ $(document).ready(function() {
 				start: function(e,t) {
 					if (!startdrag) stopsave++;
 					startdrag = 1;
-					destroyLayoutEditor();
 				},
 				stop: function(e,t) {
 					if(stopsave>0) stopsave--;
@@ -387,7 +369,6 @@ $(document).ready(function() {
 		start: function(e,t) {
 			if (!startdrag) stopsave++;
 			startdrag = 1;
-			destroyLayoutEditor();
 		},
 		drag: function(e, t) {
 			t.helper.width(400)
@@ -399,6 +380,16 @@ $(document).ready(function() {
 		}
 	});
 	initContainer();
+	$('body.edit .demo').on("click","[data-target=#editorModal]",function(e) {
+		e.preventDefault();
+		currenteditor = $(this).parent().parent().find('.view');
+		var eText = currenteditor.html();
+		contenthandle.setData(eText);
+	});
+	$("#savecontent").click(function(e) {
+		e.preventDefault();
+		currenteditor.html(contenthandle.getData());
+	});
 	$("[data-target=#downloadModal]").click(function(e) {
 		e.preventDefault();
 		downloadLayoutSrc();
