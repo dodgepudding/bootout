@@ -289,7 +289,7 @@ function downloadLayoutSrc() {
 }
 
 var currentDocument = null;
-var timerSave = 500;
+var timerSave = 1000;
 var stopsave = 0;
 var startdrag = 0;
 var demoHtml = $(".demo").html();
