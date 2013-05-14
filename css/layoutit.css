@@ -19,7 +19,7 @@ body {
 @media (max-width: 979px) {
 	.navbar-fixed-top { position:fixed; }
 }
-.navbar-inverse .brand {width:160px; color:#fff; }
+.navbar-inverse .brand {width:180px; color:#fff; }
 .brand img {float:left; margin:2px 10px 0 0; }
 .brand .label { 
 	position:relative; 
