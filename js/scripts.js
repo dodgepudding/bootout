@@ -394,13 +394,22 @@ $(document).ready(function() {
 		e.preventDefault();
 		downloadLayoutSrc();
 	});
+	$("[data-target=#sourceModal]").click(function(e) {
+		e.preventDefault();
+		$('#sourceeditor').val($(".demo").html());
+	});
+	$("#savesource").click(function(){
+		$('.demo').html($('#sourceeditor').val());
+		initContainer();
+		return;
+	});
 	$("[data-target=#shareModal]").click(function(e) {
 		e.preventDefault();
 		handleSaveLayout();
 	});
 	$("#download").click(function() {
 		downloadLayout();
-		return false
+		return false;
 	});
 	$("#downloadhtml").click(function() {
 		downloadHtmlLayout();

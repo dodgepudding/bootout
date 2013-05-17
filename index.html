@@ -7,27 +7,27 @@
 <meta name="title" content="LayoutIt! - Bootstrap可视化布局系统">
 <meta name="description" content="LayoutIt! 可拖放排序在线编辑的Bootstrap可视化布局系统">
 <meta name="keywords" content="可视化,布局,系统">
+<meta name="apple-mobile-web-app-capable" content="yes" />
 <title>Bootstrap可视化布局系统</title>
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
 
 <!-- Le styles -->
 <link href="css/bootstrap-combined.min.css" rel="stylesheet">
 <link href="css/layoutit.css" rel="stylesheet">
 
+<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-	<![endif]-->
-
-	<!-- Fav and touch icons -->
-	<link rel="shortcut icon" href="img/favicon.png">
-	
-	<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
-	<!--[if lt IE 9]>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<![endif]-->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/html5shiv.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="js/jquery.htmlClean.js"></script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="ckeditor/config.js"></script>
@@ -50,7 +50,8 @@
               <button type="button" class="btn btn-primary" id="sourcepreview"><i class="icon-eye-open icon-white"></i>预览</button>
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-primary" data-target="#downloadModal" rel="/build/downloadModal" role="button" data-toggle="modal"><i class="icon-chevron-down icon-white"></i>下载</button>
+              <button type="button" class="btn btn-primary" data-target="#downloadModal" rel="/build/downloadModal" role="button" data-toggle="modal"><i class="icon-download-alt icon-white"></i>生成</button>
+              <button type="button" class="btn btn-primary" data-target="#sourceModal" role="button" data-toggle="modal"><i class="icon-file icon-white"></i>源码</button>
               <button class="btn btn-primary" href="/share/index" role="button" data-toggle="modal" data-target="#shareModal"><i class="icon-share icon-white"></i>保存</button>
               <button class="btn btn-primary" href="#clear" id="clear"><i class="icon-trash icon-white"></i>清空</button>
             </div>
@@ -865,7 +866,7 @@
 </div>
 <div class="modal hide fade" role="dialog" id="downloadModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
-    <h3>下载</h3>
+    <h3>生成</h3>
   </div>
   <div class="modal-body">
     <p>已在下面生成干净的HTML, 可以复制粘贴代码到你的项目.</p>
@@ -881,6 +882,18 @@
   </div>
   <div class="modal-footer"> <a class="btn" data-dismiss="modal">关闭</a> </div>
 </div>
+<div class="modal hide fade" role="dialog" id="sourceModal">
+  <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <h3>可编辑源码</h3>
+  </div>
+  <div class="modal-body">
+    <p>如果你希望对别人的布局进行二次编辑, 请把可编辑源码粘贴在这里: </p>
+    <p>
+      <textarea id="sourceeditor"></textarea>
+    </p>
+  </div>
+  <div class="modal-footer"> <a id="savesource" class="btn btn-primary" data-dismiss="modal">保存</a> <a class="btn" data-dismiss="modal">关闭</a> </div>
+</div>
 <div class="modal hide fade" role="dialog" id="shareModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <h3>保存</h3>
@@ -888,5 +901,9 @@
   <div class="modal-body">保存成功</div>
   <div class="modal-footer"> <a class="btn" data-dismiss="modal">Close</a> </div>
 </div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa3aa8bdddf3fa210660cf30cf404e89a' type='text/javascript'%3E%3C/script%3E"));
+</script>
 </body>
 </html>
