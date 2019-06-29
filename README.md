@@ -7,4 +7,4 @@ LayoutIt的创作者暂时不希望项目开源，但保持layoutit.com的官网
 
 To the requirements of the project founders, they don't want their code be open source for business reason, but will keep this tool free. 
 In order to respect the founders intellectual property rights and support small teams of survival and development, I will clean the github source and submit the improvements to them. 
-If you appreciate this tool, donation is recommended for offical website.
+If you appreciate this tool, donation is recommended for official website.
